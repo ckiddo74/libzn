@@ -32,9 +32,9 @@ void receive_image(zmq::socket_t &socket, cv::Mat &image) {
 
     static MetaData meta;
     static zmq::mutable_buffer mbuf(&meta, sizeof(MetaData));
-    // 1024*768*4*1 = 3145728
-    static unsigned char *image_data = new unsigned char [3145728];
-    static zmq::mutable_buffer mbuf_image(image_data, 3145728);
+
+    static unsigned char *image_data = new unsigned char [MAX_ROWS*MAX_COLS*MAX_CHANNELS*BYTES_PER_PIXEL];
+    static zmq::mutable_buffer mbuf_image(image_data, MAX_ROWS*MAX_COLS*MAX_CHANNELS*BYTES_PER_PIXEL);
 
     socket.recv(mbuf, zmq::recv_flags::none);
     socket.recv(mbuf_image, zmq::recv_flags::none);
