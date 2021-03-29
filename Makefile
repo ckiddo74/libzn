@@ -14,7 +14,7 @@ build/libzn.so: build/zn.o
 
 build/zn.o: zn.cpp zn.hpp
 	mkdir -p build
-	g++ -c zn.cpp -fPIC -o build/zn.o -I. -std=c++11 -O2 `pkg-config opencv --cflags`
+	g++ -c zn.cpp -fPIC -o build/zn.o -I. -std=c++11 -O2 `pkg-config opencv --cflags` `pkg-config opencv4 --cflags`
 
 clean:
 	rm -rf build/
